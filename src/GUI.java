@@ -1,4 +1,6 @@
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -69,7 +71,7 @@ public class GUI
 	
 	public static void CreateWindow()
 	{
-		window = new JFrame("My TERMINAL");
+		window = new JFrame("My TERMINAL");   
 		window.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		window.addWindowListener(new WindowAdapter() {
 		    @Override
@@ -85,11 +87,11 @@ public class GUI
 		});
 		
 		comport_label = new JLabel("COM порт");
-		comport_label.setBounds(190,0,90,20);
+		comport_label.setBounds(165,20,90,20);
 		window.add(comport_label);
 
 		ports = new JComboBox(ComPort.portNames);
-		ports.setBounds(180,20,90,20);
+		ports.setBounds(155,40,90,20);
 		ActionListener actionListener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) 
 		    {
@@ -122,8 +124,8 @@ public class GUI
 		ButtonDisconnect.addActionListener(ButtonDisconnectListener);
 		window.add(ButtonDisconnect);
 		
-		baudrate_label = new JLabel("Baud rate");
-		baudrate_label.setBounds(190,40,90,20);
+		baudrate_label = new JLabel("BAUD RATE");
+		baudrate_label.setBounds(295,5,90,20);
 		window.add(baudrate_label);
 			
 		ActionListener RadioButtonListener = new ActionListener() 
@@ -149,26 +151,26 @@ public class GUI
 			}
 		};
 		RadioButton_9600 = new JRadioButton();
-		RadioButton_9600.setBounds(160,55,70,20);
+		RadioButton_9600.setBounds(260,25,70,20);
 		RadioButton_9600.setText("9600");
 		RadioButton_9600.addActionListener(RadioButtonListener);
 		window.add(RadioButton_9600);
 		
 		RadioButton_115200 = new JRadioButton();
-		RadioButton_115200.setBounds(160,75,70,20);
+		RadioButton_115200.setBounds(260,45,70,20);
 		RadioButton_115200.setText("115200");
 		RadioButton_115200.addActionListener(RadioButtonListener);
 		RadioButton_115200.setSelected(true);
 		window.add(RadioButton_115200);
 		
 		RadioButton_256000 = new JRadioButton();
-		RadioButton_256000.setBounds(230,55,70,20);
+		RadioButton_256000.setBounds(330,25,70,20);
 		RadioButton_256000.setText("256000");
 		RadioButton_256000.addActionListener(RadioButtonListener);
 		window.add(RadioButton_256000);
 		
 		RadioButton_921600 = new JRadioButton();
-		RadioButton_921600.setBounds(230,75,70,20);
+		RadioButton_921600.setBounds(330,45,70,20);
 		RadioButton_921600.setText("921600");
 		RadioButton_921600.addActionListener(RadioButtonListener);
 		window.add(RadioButton_921600);
@@ -180,24 +182,24 @@ public class GUI
 		BaudRateGroup.add(RadioButton_921600);
 		
 		
-		status_window_label = new JLabel("STATUS WINDOW");
-		status_window_label.setBounds(30,80,150,20);
+		status_window_label = new JLabel("Connection status: ");
+		status_window_label.setBounds(80,77,155,20);
 		window.add(status_window_label);
 		
 		StatusTextArea = new JTextArea(15, 10);
 		StatusTextArea.setLineWrap(true);
 		StatusTextArea.setWrapStyleWord(true);
-		StatusTextArea.setBounds(10, 100, 290, 35);
+		StatusTextArea.setBounds(200, 80, 190, 15);
 		window.add(StatusTextArea);
 		
 		TXData_label = new JLabel("TRANSMITTED DATA");
-		TXData_label.setBounds(30,132,150,20);
+		TXData_label.setBounds(30,102,150,20);
 		window.add(TXData_label);
 		
 		TXTextArea = new JTextArea(15, 10);
 		TXTextArea.setLineWrap(true);
 		TXTextArea.setWrapStyleWord(true);
-		TXTextArea.setBounds(10, 150, 290, 35);
+		TXTextArea.setBounds(10, 120, 290, 50);
 		window.add(TXTextArea);
 		
 		RXData_label = new JLabel("RECEIVED DATA");
@@ -207,7 +209,7 @@ public class GUI
 		RXTextArea = new JTextArea(15, 10);
 		RXTextArea.setLineWrap(true);
 		RXTextArea.setWrapStyleWord(true);
-		RXTextArea.setBounds(10, 200, 290, 35);
+		RXTextArea.setBounds(10, 200, 290, 50);
 		window.add(RXTextArea);
 		
 		/*ActionListener ButtonSendDataListener = new ActionListener() {
@@ -332,11 +334,11 @@ public class GUI
 		window.add(DataTextField);*/
 		
 		UM_label = new JLabel("Адрес УМ");
-		UM_label.setBounds(340,10,90,20);
+		UM_label.setBounds(460,5,90,20);
 		window.add(UM_label);
 		
 		PM_label = new JLabel("Адрес ПМ");
-		PM_label.setBounds(440,10,90,20);
+		PM_label.setBounds(560,5,90,20);
 		window.add(PM_label);
 		
 		String address[] = {"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"};
@@ -348,7 +350,7 @@ public class GUI
 		    }
 		};
 		ReceiverModAddrJComboBox = new JComboBox(address);
-		ReceiverModAddrJComboBox.setBounds(430,50,90,20);
+		ReceiverModAddrJComboBox.setBounds(550,45,90,20);
 		ReceiverModAddrJComboBox.addActionListener(ReceiverModAddrJComboBoxListener);
 		window.add(ReceiverModAddrJComboBox);
 		
@@ -360,7 +362,7 @@ public class GUI
 		    }
 		};
 		ReceiverChassisAddrJComboBox = new JComboBox(address);
-		ReceiverChassisAddrJComboBox.setBounds(430,90,90,20);
+		ReceiverChassisAddrJComboBox.setBounds(550,85,90,20);
 		ReceiverChassisAddrJComboBox.addActionListener(ReceiverChassisAddrJComboBoxListener);
 		window.add(ReceiverChassisAddrJComboBox);
 		
@@ -372,7 +374,7 @@ public class GUI
 		    }
 		};
 		SenderModAddrJComboBox = new JComboBox(address);
-		SenderModAddrJComboBox.setBounds(320,50,90,20);
+		SenderModAddrJComboBox.setBounds(440,45,90,20);
 		SenderModAddrJComboBox.addActionListener(SenderModAddrJComboBoxListener);
 		window.add(SenderModAddrJComboBox);
 		
@@ -384,24 +386,24 @@ public class GUI
 		    }
 		};
 		SenderChassisAddrJComboBox = new JComboBox(address);
-		SenderChassisAddrJComboBox.setBounds(320,90,90,20);
+		SenderChassisAddrJComboBox.setBounds(440,85,90,20);
 		SenderChassisAddrJComboBox.addActionListener(SenderChassisAddrJComboBoxListener);
 		window.add(SenderChassisAddrJComboBox);
 		
 		UmModAddr = new JLabel("Адрес модуля");
-		UmModAddr.setBounds(430,30,90,20);
+		UmModAddr.setBounds(550,25,90,20);
 		window.add(UmModAddr);
 
 		UmChassisAddr = new JLabel("Адрес шасси");
-		UmChassisAddr.setBounds(430,70,90,20);
+		UmChassisAddr.setBounds(550,65,90,20);
 		window.add(UmChassisAddr);
 		
 		PmModAddr = new JLabel("Адрес модуля");
-		PmModAddr.setBounds(320,30,90,20);
+		PmModAddr.setBounds(440,25,90,20);
 		window.add(PmModAddr);
 		
 		PmChassisAddr = new JLabel("Адрес шасси");
-		PmChassisAddr.setBounds(320,70,90,20);
+		PmChassisAddr.setBounds(440,65,90,20);
 		window.add(PmChassisAddr);
 			
 		JLabel ADCResultsLabel = new JLabel("Результаты измерений АЦП по всем каналам");
@@ -515,6 +517,7 @@ public class GUI
 		
 		window.setSize(720,400);
 		window.setLayout(null);
+		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 	}
 }

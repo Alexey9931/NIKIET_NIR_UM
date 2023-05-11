@@ -1,7 +1,10 @@
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import javax.swing.JOptionPane;
 
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
@@ -62,8 +65,13 @@ public class ComPort
 		}
 		catch (SerialPortException ex) {
             System.out.println(ex);
-            GUI.TXTextArea.setText("Sending ERROR!\n");
+            JOptionPane.showMessageDialog(null, "Ошибка отправки пакета данных! Проверьте наличие соединения!");
         }
+		catch(Exception ex)
+		{
+			System.out.println(ex);
+			JOptionPane.showMessageDialog(null, "Ошибка отправки пакета данных! Проверьте наличие соединения!");
+		}
 	}
 	public static void Disconnect()
 	{
