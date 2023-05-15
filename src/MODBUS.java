@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.JTextArea;
+
 public class MODBUS 
 {
 	//public static String DATA = GUI.DataTextField.getText();
@@ -41,17 +43,35 @@ public class MODBUS
 		buf[3] = service_byte;
 		buf[4] = cmd;
 		//String DataInBytes = new String();
+		/*TxStartTextArea;
+		TxAdrResTextArea;
+		TxAdrSendTextArea;
+		TxPacLengTextArea;
+		TxServByteTextArea;
+		TxCmdCodeTextArea;
+		TxUseData_label
+		TxCheckSumTextArea;
+		TxEndTextArea;*/
+		
 		TX_BUF[0] = header;
+		GUI.TxStartTextArea.setText(String.format("%02X ", TX_BUF[0]));
 		TX_BUF[1] = address_receiver;
+		GUI.TxAdrResTextArea.setText(String.format("%02X ", TX_BUF[1]));
 		TX_BUF[2] = address_sender;
+		GUI.TxAdrSendTextArea.setText(String.format("%02X ", TX_BUF[2]));
 		TX_BUF[3] = buf[1];
 		TX_BUF[4] = buf[2];
+		GUI.TxPacLengTextArea.setText(String.format("%02X %02X ", TX_BUF[4], TX_BUF[3]));
 		TX_BUF[5] = service_byte;
+		GUI.TxServByteTextArea.setText(String.format("%02X ", TX_BUF[5]));
 		TX_BUF[6] = cmd;
+		GUI.TxCmdCodeTextArea.setText(String.format("%02X ", TX_BUF[6]));
+		GUI.TxUseDataTextArea.setText("");
 		for (int k = 0; k < data_size; k++)
 		{
 			buf[k+5] = data.get(k);
 			TX_BUF[7+k] = data.get(k);
+			GUI.TxUseDataTextArea.append(String.format("%02X ", TX_BUF[7+k]));
 			//DataInBytes += String.format("0x%02x ", data.get(k));
 		}
 		checksum = (int) FindCrc(buf, 5 + data_size);
@@ -59,9 +79,11 @@ public class MODBUS
 		TX_BUF[8+data_size] = (byte)(checksum>>8);
 		TX_BUF[9+data_size] = (byte)(checksum>>16);
 		TX_BUF[10+data_size] = (byte)(checksum>>24);
+		GUI.TxCheckSumTextArea.setText(String.format("%02X %02X %02X %02X ", TX_BUF[10+data_size],TX_BUF[9+data_size],TX_BUF[8+data_size],TX_BUF[7+data_size]));
 		
 		TX_BUF[11+data_size] = (byte)(end);
 		TX_BUF[12+data_size] = (byte)(end>>8);
+		GUI.TxEndTextArea.setText(String.format("%02X %02X ", TX_BUF[12+data_size], TX_BUF[11+data_size]));
 		
 		ComPort.SendData(TX_BUF);
 		//ComPort.SendData( String.format("0x%02x ", header) + String.format("0x%02x ", address_receiver) + String.format("0x%02x ", address_sender) + String.format("0x%02x ", buf[1])  + String.format("0x%02x ", buf[2]) + String.format("0x%02x ", service_byte) + String.format("0x%02x ", cmd) + DataInBytes + String.format("0x%02x ", (byte)(checksum>>24)) + String.format("0x%02x ", (byte)(checksum>>16)) + String.format("0x%02x ", (byte)(checksum>>8)) + String.format("0x%02x ", (byte)checksum) + String.format("0x%02x ", (byte)(end>>8)) + String.format("0x%02x ", (byte)end));
@@ -70,28 +92,40 @@ public class MODBUS
 	public static void ModbusResponseData()
 	{
 		int Header = ComPort.RX_BUF.get(0);
+		GUI.RxStartTextArea.setText(String.format("%02X ", Header));
 		int AddressReceiver = ComPort.RX_BUF.get(1);
+		GUI.RxAdrResTextArea.setText(String.format("%02X ", AddressReceiver));
 		int AddressSender = ComPort.RX_BUF.get(2);
+		GUI.RxAdrSendTextArea.setText(String.format("%02X ", AddressSender));
 		int DataLength = ComPort.RX_BUF.get(3)|(ComPort.RX_BUF.get(4)<<8);
+		GUI.RxPacLengTextArea.setText(String.format("%02X %02X ", ComPort.RX_BUF.get(4) ,ComPort.RX_BUF.get(3)));
 		int ServiceByte = ComPort.RX_BUF.get(5);
+		GUI.RxServByteTextArea.setText(String.format("%02X ", ServiceByte));
 		int Cmd = ComPort.RX_BUF.get(6);
+		GUI.RxCmdCodeTextArea.setText(String.format("%02X ", Cmd));
 		int UsefulDataLength = ComPort.RX_BUF.size()-13;
 		int UsefulData[] = new int[UsefulDataLength];
+		GUI.RxUseDataTextArea.setText("");
 		for (int len = 0; len < UsefulDataLength; len++)
 		{
 			UsefulData[len] = ComPort.RX_BUF.get(7+len);
+			GUI.RxUseDataTextArea.append(String.format("%02X ", ComPort.RX_BUF.get(7+len)));
 		}
 		int Checksum = 0;
+		GUI.RxCheckSumTextArea.setText("");
 		for (int len = 3; len >= 0; len--)
 		{
 			Checksum = Checksum << 8;
 			Checksum |= ComPort.RX_BUF.get(7+UsefulDataLength+len);
+			GUI.RxCheckSumTextArea.append(String.format("%02X ", ComPort.RX_BUF.get(7+UsefulDataLength+len)));
 		}
 		int End = 0;
+		GUI.RxEndTextArea.setText("");
 		for (int len = 1; len >= 0; len--)
 		{
 			End = End << 8;
 			End |= ComPort.RX_BUF.get(11+UsefulDataLength+len);
+			GUI.RxEndTextArea.append(String.format("%02X ", ComPort.RX_BUF.get(11+UsefulDataLength+len)));
 		}
 		//Проверка контрольной суммы
 		int RealChecksum = 0;
@@ -110,7 +144,7 @@ public class MODBUS
 		{
 			System.out.println("CRC error!");
 		}
-		//Отправка ответа в зависимости от команды
+
 		switch (Cmd)
 		{
 			case 0x02:

@@ -37,12 +37,48 @@ public class GUI
 	public static ButtonGroup BaudRateGroup;
 	public static JLabel status_window_label;
 	public static JLabel RXData_label;
+	public static JLabel RxStart_label;
+	public static JLabel RxAdrRes_label;
+	public static JLabel RxAdrSend_label;
+	public static JLabel RxPackLeng_label;
+	public static JLabel RxServByte_label;
+	public static JLabel RxCmdCode_label;
+	public static JLabel RxUseData_label;
+	public static JLabel RxCheckSum_label;
+	public static JLabel RxEnd_label;
 	public static JLabel TXData_label;
+	public static JLabel TxStart_label;
+	public static JLabel TxAdrRes_label;
+	public static JLabel TxAdrSend_label;
+	public static JLabel TxPackLeng_label;
+	public static JLabel TxServByte_label;
+	public static JLabel TxCmdCode_label;
+	public static JLabel TxUseData_label;
+	public static JLabel TxCheckSum_label;
+	public static JLabel TxEnd_label;
 	public static JLabel UM_label;
 	public static JLabel PM_label;
 	public static JTextArea StatusTextArea;
 	public static JTextArea RXTextArea;
+	public static JTextArea RxStartTextArea;
+	public static JTextArea RxAdrResTextArea;
+	public static JTextArea RxAdrSendTextArea;
+	public static JTextArea RxPacLengTextArea;
+	public static JTextArea RxServByteTextArea;
+	public static JTextArea RxCmdCodeTextArea;
+	public static JTextArea RxUseDataTextArea;
+	public static JTextArea RxCheckSumTextArea;
+	public static JTextArea RxEndTextArea;
 	public static JTextArea TXTextArea;
+	public static JTextArea TxStartTextArea;
+	public static JTextArea TxAdrResTextArea;
+	public static JTextArea TxAdrSendTextArea;
+	public static JTextArea TxPacLengTextArea;
+	public static JTextArea TxServByteTextArea;
+	public static JTextArea TxCmdCodeTextArea;
+	public static JTextArea TxUseDataTextArea;
+	public static JTextArea TxCheckSumTextArea;
+	public static JTextArea TxEndTextArea;
 	//public static JTextField DataTextField;
 	public static JComboBox ReceiverModAddrJComboBox;
 	public static JComboBox ReceiverChassisAddrJComboBox;
@@ -202,15 +238,196 @@ public class GUI
 		TXTextArea.setBounds(10, 120, 290, 50);
 		window.add(TXTextArea);
 		
+		TxStart_label = new JLabel("Пр.начала");
+		TxStart_label.setBounds(10,172,150,20);
+		window.add(TxStart_label);
+		
+		TxStartTextArea = new JTextArea(15, 50);
+		TxStartTextArea.setLineWrap(true);
+		TxStartTextArea.setWrapStyleWord(true);
+		TxStartTextArea.setBounds(30, 190, 30, 20);
+		window.add(TxStartTextArea);
+		
+		TxAdrRes_label = new JLabel("Адр.получ.");
+		TxAdrRes_label.setBounds(80,172,150,20);
+		window.add(TxAdrRes_label);
+		
+		TxAdrResTextArea = new JTextArea(15, 50);
+		TxAdrResTextArea.setLineWrap(true);
+		TxAdrResTextArea.setWrapStyleWord(true);
+		TxAdrResTextArea.setBounds(100, 190, 30, 20);
+		window.add(TxAdrResTextArea);
+		
+		TxAdrSend_label = new JLabel("Адр.отправ.");
+		TxAdrSend_label.setBounds(150,172,150,20);
+		window.add(TxAdrSend_label);
+		
+		TxAdrSendTextArea = new JTextArea(15, 50);
+		TxAdrSendTextArea.setLineWrap(true);
+		TxAdrSendTextArea.setWrapStyleWord(true);
+		TxAdrSendTextArea.setBounds(170, 190, 30, 20);
+		window.add(TxAdrSendTextArea);
+
+		TxPackLeng_label = new JLabel("Длина пакета");
+		TxPackLeng_label.setBounds(220,172,150,20);
+		window.add(TxPackLeng_label);
+		
+		TxPacLengTextArea = new JTextArea(15, 50);
+		TxPacLengTextArea.setLineWrap(true);
+		TxPacLengTextArea.setWrapStyleWord(true);
+		TxPacLengTextArea.setBounds(240, 190, 40, 20);
+		window.add(TxPacLengTextArea);
+		
+		TxServByte_label = new JLabel("Серв.байт");
+		TxServByte_label.setBounds(10,222,150,20);
+		window.add(TxServByte_label);
+		
+		TxServByteTextArea = new JTextArea(15, 50);
+		TxServByteTextArea.setLineWrap(true);
+		TxServByteTextArea.setWrapStyleWord(true);
+		TxServByteTextArea.setBounds(30, 240, 30, 20);
+		window.add(TxServByteTextArea);
+		
+		TxCmdCode_label = new JLabel("Код ком.");
+		TxCmdCode_label.setBounds(80,222,150,20);
+		window.add(TxCmdCode_label);
+		
+		TxCmdCodeTextArea = new JTextArea(15, 50);
+		TxCmdCodeTextArea.setLineWrap(true);
+		TxCmdCodeTextArea.setWrapStyleWord(true);
+		TxCmdCodeTextArea.setBounds(100, 240, 30, 20);
+		window.add(TxCmdCodeTextArea);
+		
+		TxCheckSum_label = new JLabel("Контр.сум.");
+		TxCheckSum_label.setBounds(150,222,150,20);
+		window.add(TxCheckSum_label);
+		
+		TxCheckSumTextArea = new JTextArea(15, 50);
+		TxCheckSumTextArea.setLineWrap(true);
+		TxCheckSumTextArea.setWrapStyleWord(true);
+		TxCheckSumTextArea.setBounds(140, 240, 90, 20);
+		window.add(TxCheckSumTextArea);
+		
+		TxEnd_label = new JLabel("Пр.конца");
+		TxEnd_label.setBounds(220,222,150,20);
+		window.add(TxEnd_label);
+		
+		TxEndTextArea = new JTextArea(15, 50);
+		TxEndTextArea.setLineWrap(true);
+		TxEndTextArea.setWrapStyleWord(true);
+		TxEndTextArea.setBounds(240, 240, 40, 20);
+		window.add(TxEndTextArea);
+		
+		TxUseData_label = new JLabel("Поле данных");
+		TxUseData_label.setBounds(10,272,150,20);
+		window.add(TxUseData_label);
+		
+		TxUseDataTextArea = new JTextArea(15, 50);
+		TxUseDataTextArea.setLineWrap(true);
+		TxUseDataTextArea.setWrapStyleWord(true);
+		TxUseDataTextArea.setBounds(30, 290, 250, 40);
+		window.add(TxUseDataTextArea);
+		
+		
 		RXData_label = new JLabel("RECEIVED DATA");
-		RXData_label.setBounds(30,182,150,20);
+		RXData_label.setBounds(30,332,150,20);
 		window.add(RXData_label);
 		
 		RXTextArea = new JTextArea(15, 10);
 		RXTextArea.setLineWrap(true);
 		RXTextArea.setWrapStyleWord(true);
-		RXTextArea.setBounds(10, 200, 290, 50);
+		RXTextArea.setBounds(10, 350, 290, 50);
 		window.add(RXTextArea);
+		
+		RxStart_label = new JLabel("Пр.начала");
+		RxStart_label.setBounds(10,422,150,20);
+		window.add(RxStart_label);
+		
+		RxStartTextArea = new JTextArea(15, 50);
+		RxStartTextArea.setLineWrap(true);
+		RxStartTextArea.setWrapStyleWord(true);
+		RxStartTextArea.setBounds(30, 440, 30, 20);
+		window.add(RxStartTextArea);
+		
+		RxAdrRes_label = new JLabel("Адр.получ.");
+		RxAdrRes_label.setBounds(80,422,150,20);
+		window.add(RxAdrRes_label);
+		
+		RxAdrResTextArea = new JTextArea(15, 50);
+		RxAdrResTextArea.setLineWrap(true);
+		RxAdrResTextArea.setWrapStyleWord(true);
+		RxAdrResTextArea.setBounds(100, 440, 30, 20);
+		window.add(RxAdrResTextArea);
+		
+		RxAdrSend_label = new JLabel("Адр.отправ.");
+		RxAdrSend_label.setBounds(150,422,150,20);
+		window.add(RxAdrSend_label);
+		
+		RxAdrSendTextArea = new JTextArea(15, 50);
+		RxAdrSendTextArea.setLineWrap(true);
+		RxAdrSendTextArea.setWrapStyleWord(true);
+		RxAdrSendTextArea.setBounds(170, 440, 30, 20);
+		window.add(RxAdrSendTextArea);
+
+		RxPackLeng_label = new JLabel("Длина пакета");
+		RxPackLeng_label.setBounds(220,422,150,20);
+		window.add(RxPackLeng_label);
+		
+		RxPacLengTextArea = new JTextArea(15, 50);
+		RxPacLengTextArea.setLineWrap(true);
+		RxPacLengTextArea.setWrapStyleWord(true);
+		RxPacLengTextArea.setBounds(240, 440, 40, 20);
+		window.add(RxPacLengTextArea);
+		
+		RxServByte_label = new JLabel("Серв.байт");
+		RxServByte_label.setBounds(10,472,150,20);
+		window.add(RxServByte_label);
+		
+		RxServByteTextArea = new JTextArea(15, 50);
+		RxServByteTextArea.setLineWrap(true);
+		RxServByteTextArea.setWrapStyleWord(true);
+		RxServByteTextArea.setBounds(30, 490, 30, 20);
+		window.add(RxServByteTextArea);
+		
+		RxCmdCode_label = new JLabel("Код ком.");
+		RxCmdCode_label.setBounds(80,472,150,20);
+		window.add(RxCmdCode_label);
+		
+		RxCmdCodeTextArea = new JTextArea(15, 50);
+		RxCmdCodeTextArea.setLineWrap(true);
+		RxCmdCodeTextArea.setWrapStyleWord(true);
+		RxCmdCodeTextArea.setBounds(100, 490, 30, 20);
+		window.add(RxCmdCodeTextArea);
+		
+		RxCheckSum_label = new JLabel("Контр.сум.");
+		RxCheckSum_label.setBounds(150,472,150,20);
+		window.add(RxCheckSum_label);
+		
+		RxCheckSumTextArea = new JTextArea(15, 50);
+		RxCheckSumTextArea.setLineWrap(true);
+		RxCheckSumTextArea.setWrapStyleWord(true);
+		RxCheckSumTextArea.setBounds(140, 490, 90, 20);
+		window.add(RxCheckSumTextArea);
+		
+		RxEnd_label = new JLabel("Пр.конца");
+		RxEnd_label.setBounds(220,472,150,20);
+		window.add(RxEnd_label);
+		
+		RxEndTextArea = new JTextArea(15, 50);
+		RxEndTextArea.setLineWrap(true);
+		RxEndTextArea.setWrapStyleWord(true);
+		RxEndTextArea.setBounds(240, 490, 40, 20);
+		window.add(RxEndTextArea);
+		
+		RxUseData_label = new JLabel("Поле данных");
+		RxUseData_label.setBounds(10,522,150,20);
+		window.add(RxUseData_label);
+		
+		RxUseDataTextArea = new JTextArea(15, 50);
+		RxUseDataTextArea.setLineWrap(true);
+		RxUseDataTextArea.setWrapStyleWord(true);
+		RxUseDataTextArea.setBounds(30, 540, 250, 40);
+		window.add(RxUseDataTextArea);
 		
 		/*ActionListener ButtonSendDataListener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) 
@@ -407,115 +624,115 @@ public class GUI
 		window.add(PmChassisAddr);
 			
 		JLabel ADCResultsLabel = new JLabel("Результаты измерений АЦП по всем каналам");
-		ADCResultsLabel.setBounds(140,245,290,20);
+		ADCResultsLabel.setBounds(140,595,290,20);
 		window.add(ADCResultsLabel);
 		JLabel ADCChanelsLabel = new JLabel("Канал 0 \t   Канал 1 \t   Канал 2 \t   Канал 3 \t   Канал 4 \t   Канал 5 \t   Канал 6 \t   Канал 7 ");
-		ADCChanelsLabel.setBounds(60,265,490,20);
+		ADCChanelsLabel.setBounds(60,615,490,20);
 		window.add(ADCChanelsLabel);
 		JLabel ADCCodeLabel = new JLabel("Код");
-		ADCCodeLabel.setBounds(20,295,90,20);
+		ADCCodeLabel.setBounds(20,645,90,20);
 		window.add(ADCCodeLabel);
 		JLabel ADCValueLabel = new JLabel("U, В");
-		ADCValueLabel.setBounds(20,325,90,20);
+		ADCValueLabel.setBounds(20,675,90,20);
 		window.add(ADCValueLabel);
 		
 		ADCCodeCh0 = new JTextArea();
 		ADCCodeCh0.setLineWrap(true);
 		ADCCodeCh0.setWrapStyleWord(true);
-		ADCCodeCh0.setBounds(60, 295, 45, 20);
+		ADCCodeCh0.setBounds(60, 645, 45, 20);
 		window.add(ADCCodeCh0);
 		
 		ADCCodeCh1 = new JTextArea();
 		ADCCodeCh1.setLineWrap(true);
 		ADCCodeCh1.setWrapStyleWord(true);
-		ADCCodeCh1.setBounds(118, 295, 45, 20);
+		ADCCodeCh1.setBounds(118, 645, 45, 20);
 		window.add(ADCCodeCh1);
 		
 		ADCCodeCh2 = new JTextArea();
 		ADCCodeCh2.setLineWrap(true);
 		ADCCodeCh2.setWrapStyleWord(true);
-		ADCCodeCh2.setBounds(176, 295, 45, 20);
+		ADCCodeCh2.setBounds(176, 645, 45, 20);
 		window.add(ADCCodeCh2);
 		
 		ADCCodeCh3 = new JTextArea();
 		ADCCodeCh3.setLineWrap(true);
 		ADCCodeCh3.setWrapStyleWord(true);
-		ADCCodeCh3.setBounds(234, 295, 45, 20);
+		ADCCodeCh3.setBounds(234, 645, 45, 20);
 		window.add(ADCCodeCh3);
 		
 		ADCCodeCh4 = new JTextArea();
 		ADCCodeCh4.setLineWrap(true);
 		ADCCodeCh4.setWrapStyleWord(true);
-		ADCCodeCh4.setBounds(292, 295, 45, 20);
+		ADCCodeCh4.setBounds(292, 645, 45, 20);
 		window.add(ADCCodeCh4);
 		
 		ADCCodeCh5 = new JTextArea();
 		ADCCodeCh5.setLineWrap(true);
 		ADCCodeCh5.setWrapStyleWord(true);
-		ADCCodeCh5.setBounds(350, 295, 45, 20);
+		ADCCodeCh5.setBounds(350, 645, 45, 20);
 		window.add(ADCCodeCh5);
 		
 		ADCCodeCh6 = new JTextArea();
 		ADCCodeCh6.setLineWrap(true);
 		ADCCodeCh6.setWrapStyleWord(true);
-		ADCCodeCh6.setBounds(408, 295, 45, 20);
+		ADCCodeCh6.setBounds(408, 645, 45, 20);
 		window.add(ADCCodeCh6);
 		
 		ADCCodeCh7 = new JTextArea();
 		ADCCodeCh7.setLineWrap(true);
 		ADCCodeCh7.setWrapStyleWord(true);
-		ADCCodeCh7.setBounds(466, 295, 45, 20);
+		ADCCodeCh7.setBounds(466, 645, 45, 20);
 		window.add(ADCCodeCh7);
 		
 		ADCValueCh0 = new JTextArea();
 		ADCValueCh0.setLineWrap(true);
 		ADCValueCh0.setWrapStyleWord(true);
-		ADCValueCh0.setBounds(60, 325, 45, 20);
+		ADCValueCh0.setBounds(60, 675, 45, 20);
 		window.add(ADCValueCh0);
 		
 		ADCValueCh1 = new JTextArea();
 		ADCValueCh1.setLineWrap(true);
 		ADCValueCh1.setWrapStyleWord(true);
-		ADCValueCh1.setBounds(118, 325, 45, 20);
+		ADCValueCh1.setBounds(118, 675, 45, 20);
 		window.add(ADCValueCh1);
 		
 		ADCValueCh2 = new JTextArea();
 		ADCValueCh2.setLineWrap(true);
 		ADCValueCh2.setWrapStyleWord(true);
-		ADCValueCh2.setBounds(176, 325, 45, 20);
+		ADCValueCh2.setBounds(176, 675, 45, 20);
 		window.add(ADCValueCh2);
 		
 		ADCValueCh3 = new JTextArea();
 		ADCValueCh3.setLineWrap(true);
 		ADCValueCh3.setWrapStyleWord(true);
-		ADCValueCh3.setBounds(234, 325, 45, 20);
+		ADCValueCh3.setBounds(234, 675, 45, 20);
 		window.add(ADCValueCh3);
 		
 		ADCValueCh4 = new JTextArea();
 		ADCValueCh4.setLineWrap(true);
 		ADCValueCh4.setWrapStyleWord(true);
-		ADCValueCh4.setBounds(292, 325, 45, 20);
+		ADCValueCh4.setBounds(292, 675, 45, 20);
 		window.add(ADCValueCh4);
 		
 		ADCValueCh5 = new JTextArea();
 		ADCValueCh5.setLineWrap(true);
 		ADCValueCh5.setWrapStyleWord(true);
-		ADCValueCh5.setBounds(350, 325, 45, 20);
+		ADCValueCh5.setBounds(350, 675, 45, 20);
 		window.add(ADCValueCh5);
 		
 		ADCValueCh6 = new JTextArea();
 		ADCValueCh6.setLineWrap(true);
 		ADCValueCh6.setWrapStyleWord(true);
-		ADCValueCh6.setBounds(408, 325, 45, 20);
+		ADCValueCh6.setBounds(408, 675, 45, 20);
 		window.add(ADCValueCh6);
 		
 		ADCValueCh7 = new JTextArea();
 		ADCValueCh7.setLineWrap(true);
 		ADCValueCh7.setWrapStyleWord(true);
-		ADCValueCh7.setBounds(466, 325, 45, 20);
+		ADCValueCh7.setBounds(466, 675, 45, 20);
 		window.add(ADCValueCh7);
 		
-		window.setSize(720,400);
+		window.setSize(720,750);
 		window.setLayout(null);
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
